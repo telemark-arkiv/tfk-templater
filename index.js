@@ -4,12 +4,15 @@ var templater = require('./templater')
 
 var options = {
                data:
-                 { "FullName":"Sverre Tverrtryne",
-                   "SchoolYear":"2015/2016",
-                   "Adress":"Hestehagen 3715 SKIEN",
-                   "Date":"27.03.15"
+                 { "navn":"Sverre Tverrtryne",
+                   "skolear":"2015/2016",
+                   "adresse":"Hestehagen 32b",
+                   "postnr":"3211",
+                   "sted":"Skien",
+                   "avdelingsniva":"avdeling for areal og transport",
+                   "dato":"27.03.15"
                  },
-               inputfile: "input.docx"
+               inputfile: "skoleskyss_positivt_vedtak.docx"
 }
 
 var result = new templater(options, function (err, data) {

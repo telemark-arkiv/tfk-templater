@@ -10,14 +10,14 @@ var options;
 function readFile(callback) {
 
   if (!fs.existsSync(options.inputfile)) {
-    return callback(new Error('Error: ' + inputfile + 'not found'), null);
+    return callback(new Error(options.inputfile + ' not found'), null);
   }
 
   var content = fs.readFileSync(options.inputfile,"binary")
   var doc = new Docxtemplater(content);
 
   if (!doc) {
-    return callback(new Error('Error: Cannot open doc content'), null);
+    return callback(new Error('Cannot open doc content'), null);
   }
   return callback(null, doc);
 }
