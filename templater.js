@@ -14,10 +14,10 @@ function readFile(callback) {
   }
 
   var content = fs.readFileSync(options.inputfile,"binary")
-  var doc=new Docxtemplater(content);
+  var doc = new Docxtemplater(content);
 
   if (!doc) {
-    return callback(new Error('Missing required input: options'), null);
+    return callback(new Error('Error: Cannot open doc content'), null);
   }
   return callback(null, doc);
 }
