@@ -1,0 +1,38 @@
+{
+  "name": "tfk-templater",
+  "version": "7.0.4",
+  "description": "Fills in data to document from a template",
+  "author": {
+    "name": "Jonas Enge",
+    "email": "jonas.enge@t-fk.no",
+    "url": "https://github.com/telemark"
+  },
+  "contributors": [
+    {
+      "name": "Geir Gåsodden",
+      "email": "geir.gasodden@pythonia.no",
+      "url": "https://github.com/zrrrzzt"
+    }
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "scripts": {
+  },
+  "keywords": [
+    "Telemark fylkeskommune",
+    "tfk",
+    "templater"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/telemark/tfk-templater.git"
+  },
+  "bugs": {
+    "url": "http://github.com/telemark/tfk-templater/issues"
+  },
+  "dependencies": {
+    "docxtemplater": "^1.0.5"
+  }
+}
