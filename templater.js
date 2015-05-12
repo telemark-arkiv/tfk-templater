@@ -31,6 +31,10 @@ function setOutputName() {
 // Function: Creates file
 function createFile(doc, callback) {
 
+  if (fs.existsSync(options.outputfile)) {
+    return callback(new Error(options.outputfile + ' exist'), null);
+  }
+
   // Apply changes
   doc.render();
 
