@@ -1,6 +1,6 @@
 {
   "name": "tfk-templater",
-  "version": "7.0.4",
+  "version": "1.0.0",
   "description": "Fills in data to document from a template",
   "author": {
     "name": "Jonas Enge",
