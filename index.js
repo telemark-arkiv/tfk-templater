@@ -111,4 +111,4 @@ function create(opts, callback) {
 }
 
 // Export the class
-module.exports = create
+module.exports = create;
