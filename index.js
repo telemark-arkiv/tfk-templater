@@ -2,85 +2,98 @@
 
 var fs = require('fs')
 var Docxtemplater = require('docxtemplater')
+var async = require('async')
 
-var options;
+var options, content, doc, buf
 
+// Function: Check if all options are set
+function checkOpts(callback) {
+  if (!options) {
+    return callback('Missing required input: options', null)
+  }
+
+  if (!options.inputfile) {
+    return callback('Missing required input: options.inputfile', null)
+  }
+
+  if (!options.outputfile) {
+    return callback('Missing required input: options.outputfile', null)
+  }
+
+  if (!options.data) {
+    return callback('Missing required input: options.data', null)
+  }
+  return callback()
+}
 
 // Function: Read docx file
 function readFile(callback) {
-
-  if (!fs.existsSync(options.inputfile)) {
-    return callback(new Error(options.inputfile + ' not found'), null);
-  }
-
-  var content = fs.readFileSync(options.inputfile,"binary")
-  var doc = new Docxtemplater(content);
-
-  if (!doc) {
-    return callback(new Error('Cannot open doc content'), null);
-  }
-  return callback(null, doc);
+  content = fs.readFileSync(options.inputfile,'binary', function(err, res) {
+    if (err) return callback(err, null)
+  })
+  return callback()
 }
 
-// Function: Sets outputname if unset
-function setOutputName() {
-  var outputfile = options.inputfile.replace(/\.[^/.]+$/, "") + '-out.docx'
-  return outputfile
+// Function: Load Template
+function templater(callback) {
+  doc = new Docxtemplater(content,  function(err, res) {
+    if (err) return callback(err, null)
+  })
+  return callback()
 }
 
-// Function: Creates file
-function createFile(doc, callback) {
+// Function: fills in data in template
+function setDocData(callback) {
+  doc.setData(options.data, function(err) {
+    if (err) return callback(err, null)
+  })
+  return callback()
+}
 
-  if (fs.existsSync(options.outputfile)) {
-    return callback(new Error(options.outputfile + ' exist'), null);
-  }
+// Function: Render document
+function renderDoc(callback) {
+  doc.render(function(err) {
+    if (err) return callback(err, null)
+  })
+  return callback()
+}
 
-  // Apply changes
-  doc.render();
+// Function: Generate doc buffer
+function generateBuffer(callback) {
+  buf = doc.getZip().generate({type:'nodebuffer'}, function(err, buf) {
+    if (err) return callback(err, null)
+  })
+  return callback()
+}
 
-  // Generate buffer
-  var buf = doc.getZip().generate({type:"nodebuffer"});
-
-  // Write buffer to file
+// Function: Write finished document
+function writeFile(callback) {
   fs.writeFileSync(options.outputfile, buf, 'utf-8', function (err) {
-    if (err) {
-      return callback(new Error('Error: ' + err), null);
-    }
-  });
+    if (err) return callback(err, null)
+  })
+  return callback('Wrote file ' + options.outputfile)
 }
 
 // Constructor: Do all the things
 function create(opts, callback) {
 
-  options = opts
-
-  if (!options) {
-    return callback(new Error('Missing required input: options'), null);
-  }
-
-  if (!options.inputfile) {
-    return callback(new Error('Missing required input: options.inputfile'), null);
-  }
-
-  if (!options.outputfile) {
-    options.outputfile = setOutputName()
-  }
-
-  if (!options.data) {
-    return callback(new Error('Missing required input: options.data'), null);
-  }
-
-  readFile(function(err, doc) {
-    doc.setData(options.data)
-    doc.render();
-    createFile(doc, function (err, data) {
+  opts.files.forEach(function(arr) {
+    options = arr
+    async.series([
+      checkOpts,
+      readFile,
+      templater,
+      setDocData,
+      renderDoc,
+      generateBuffer,
+      writeFile
+    ], function (err, res) {
       if (err) {
-        return callback(new Error('Error: ' + err), null);
+        console.error(err)
       }
-      return callback(null, 'File ' + options.outputfile + ' written');
-    });
-  });
+    })
+  })
 }
 
 // Export the class
-module.exports = create;
+module.exports = create
