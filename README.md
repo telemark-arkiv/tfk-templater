@@ -7,7 +7,7 @@ Example:
 ```javascript
 'use strict'
 
-var templater = require('templater')
+var templater = require('tfk-templater')
 
 var options = {
                  files: [
