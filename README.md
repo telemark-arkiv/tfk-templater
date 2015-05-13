@@ -1,6 +1,23 @@
 # tfk-templater
 
-npm install
+Node module for creating documents from templates.
+
+## Installation
+```
+$ git clone git@github.com:telemark/tfk-templater.git
+```
+
+## Setup
+```
+$ npm run setup
+```
+
+## Test
+```
+$ npm test
+```
+
+## Usage
 
 
 Example:
@@ -41,4 +58,4 @@ var result = new templater(options, function (err, data) {
     console.log(result)
   }
 })
-
+```
