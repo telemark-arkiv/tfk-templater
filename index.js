@@ -9,6 +9,15 @@ var content;
 var doc;
 var buf;
 
+/**
+ * Validates the options object
+ * @param {object} options - Option object
+ * @param {string} options.inputfile - Path to the inputfile
+ * @param {string} options.outputfil - Path to the outputfile
+ * @param {object} options.data - Path to the outputfile
+ * @param {callback} callback - The response callback
+ * @returns {*}
+ */
 function validateOptions(options, callback) {
   if (!options) {
     return callback('Missing required input: options', null);

@@ -21,7 +21,7 @@
   "scripts": {
     "setup": "npm install && node setup.js",
     "test": "mocha --reporter spec test/*.js",
-    "build": "./node_modules/.bin/jsdoc -d docs"
+    "build": "./node_modules/.bin/jsdoc index.js -d docs"
   },
   "keywords": [
     "Telemark fylkeskommune",
