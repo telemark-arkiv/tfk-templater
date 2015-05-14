@@ -9,8 +9,7 @@ var content;
 var doc;
 var buf;
 
-// Function: Check if all options are set
-function checkOpts(callback) {
+function validateOptions(options, callback) {
   if (!options) {
     return callback('Missing required input: options', null);
   }
@@ -26,7 +25,7 @@ function checkOpts(callback) {
   if (!options.data) {
     return callback('Missing required input: options.data', null);
   }
-  return callback();
+  return callback(null, {'status':'ok'});
 }
 
 // Function: Read docx file
@@ -95,7 +94,7 @@ function create(opts, callback) {
   opts.files.forEach(function(arr) {
     options = arr;
     async.series([
-      checkOpts,
+      validateOptions,
       readFile,
       templater,
       setDocData,
