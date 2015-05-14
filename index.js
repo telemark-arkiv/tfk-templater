@@ -75,7 +75,7 @@ function create(opts, callback) {
   opts.files.forEach(function(arr) {
     options = arr;
     async.series([
-      function (next) { validateOptions(options, next); },
+      function(next) { validateOptions(options, next); },
       readFile,
       templater,
       setDocData,
