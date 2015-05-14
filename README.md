@@ -29,7 +29,7 @@ Example:
 ```javascript
 'use strict';
 
-var templater = require('./index.js');
+var templater = require('tfk-templater');
 
 var options = {
   files: [
