@@ -17,6 +17,11 @@ $ npm run setup
 $ npm test
 ```
 
+## Build
+```
+$ npm run build
+```
+
 ## Usage
 
 
