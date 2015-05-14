@@ -6,7 +6,7 @@ var options = {
   files: [
   {
     inputfile: __dirname + '/templates/skoleskyss_positivt_vedtak.docx',
-    outputfile: __dirname + '/out/skoleskyss_positivt_vedtak.pdf',
+    outputfile: __dirname + '/out/skoleskyss_positivt_vedtak.docx',
     data:
     {
       'navn':'Sverre Tverrtryne',
@@ -18,7 +18,7 @@ var options = {
   },
   {
     inputfile: __dirname + '/templates/skoleskyss_kvittering.docx',
-    outputfile: __dirname + '/out/skoleskyss_kvittering.pdf',
+    outputfile: __dirname + '/out/skoleskyss_kvittering.docx',
     data: {
       'navn':'Sverre Tverrtryne',
       'skolear':'2015/2016',
