@@ -8,9 +8,8 @@
 logs
 *.log
 
-# Web Starter Kit
-.tmp
-dist
+# Docs
+docs
 
 # Runtime data
 pids

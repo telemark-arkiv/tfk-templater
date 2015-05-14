@@ -3,39 +3,12 @@
 var fs = require('fs');
 var Docxtemplater = require('docxtemplater');
 var async = require('async');
+var validateOptions = require('./lib/validateOptions');
 
 var options;
 var content;
 var doc;
 var buf;
-
-/**
- * Validates the options object
- * @param {object} options - Option object
- * @param {string} options.inputfile - Path to the inputfile
- * @param {string} options.outputfil - Path to the outputfile
- * @param {object} options.data - Path to the outputfile
- * @param {callback} callback - The response callback
- * @returns {*}
- */
-function validateOptions(options, callback) {
-  if (!options) {
-    return callback('Missing required input: options', null);
-  }
-
-  if (!options.inputfile) {
-    return callback('Missing required input: options.inputfile', null);
-  }
-
-  if (!options.outputfile) {
-    return callback('Missing required input: options.outputfile', null);
-  }
-
-  if (!options.data) {
-    return callback('Missing required input: options.data', null);
-  }
-  return callback(null, {'status':'ok'});
-}
 
 // Function: Read docx file
 function readFile(callback) {
@@ -99,7 +72,6 @@ function writeFile(callback) {
 
 // Constructor: Do all the things
 function create(opts, callback) {
-
   opts.files.forEach(function(arr) {
     options = arr;
     async.series([
