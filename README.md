@@ -1,5 +1,7 @@
 # tfk-templater
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/telemark/tfk-templater.svg)](https://greenkeeper.io/)
+
 Node module for creating documents from templates.
 
 ## Installation
