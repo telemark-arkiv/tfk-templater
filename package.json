@@ -40,7 +40,7 @@
     "docxtemplater": "^1.0.5"
   },
   "devDependencies": {
-    "jscs": "1.13.1",
+    "jscs": "3.0.7",
     "mocha": "2.5.3",
     "jsdoc": "3.5.5"
   }
