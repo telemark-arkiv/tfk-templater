@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "async": "^0.9.0",
-    "docxtemplater": "^1.0.5"
+    "docxtemplater": "^3.0.0"
   },
   "devDependencies": {
     "jscs": "1.13.1",
