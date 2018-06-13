@@ -36,7 +36,7 @@
     "url": "http://github.com/telemark/tfk-templater/issues"
   },
   "dependencies": {
-    "async": "^0.9.0",
+    "async": "^2.0.0",
     "docxtemplater": "^1.0.5"
   },
   "devDependencies": {
